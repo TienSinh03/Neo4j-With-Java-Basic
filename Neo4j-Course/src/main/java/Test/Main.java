@@ -52,5 +52,9 @@ public class Main {
 		System.out.println("Tim danh sach khoa hoc thuoc cua mot khoa nao do khi biet ma khoa");
 		listCourses.forEach(System.out::println);
 		
+		//Cập nhật name = “Mathematics” cho department_id = “Math” 
+		System.out.println("Cap nhat name = Mathematics cho department_id = Math ");
+		System.out.println(handler_Main.updateNameByID("Math", "Mathematics"));
+		
 	}
 }

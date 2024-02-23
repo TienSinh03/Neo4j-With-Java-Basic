@@ -64,6 +64,24 @@ public class Handler_Main {
 					
 		return list;
 	}
-	
+	/**
+	 * Cập nhật name = “Mathematics” cho department_id = “Math” 
+	 * @param deptid
+	 * @return
+	 */
+	public Department updateNameByID(String deptid, String nameNew) {
+		Department dept = null;
+		String query = "MATCH (d: Department {deptID: $id}) \n"
+				+ "SET d.name= $namenew \n"
+				+ "RETURN d";
+		
+		Result result = transaction.run(query, Values.parameters("id", deptid, "namenew", nameNew));
+		Record record = result.single();
+		Node node_dept = record.get("d").asNode();
+		
+		dept = new Department(node_dept.get("deptID").asString(),node_dept.get("name").asString(),node_dept.get("dean").asString(),node_dept.get("building").asString(),Integer.parseInt(node_dept.get("room").toString()));
+
+		return dept;
+	}
 	
 }
